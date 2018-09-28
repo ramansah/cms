@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    <img class="img img-fluid" 
+      src="<%= CmsWeb.Uploaders.Cover.url({@post.cover, @post}) %>" 
+      alt="cover image"
+      style="width: 100%">
+    <br><br><br>
+
+    <div class="text-center">
+      <h1><%= @post.title %></h1>
+      <br>
+      <p><%= @post.user.name %></p>
+      <br><br>
+    </div>
+
+    <%= raw Earmark.as_html!(@post.body) %>
+
+  </div>
+</div>

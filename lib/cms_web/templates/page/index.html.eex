@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="card-columns">
+
+    <%= for post <- @posts do %>
+    <a href="<%= page_path(@conn, :show, post) %>">
+      <div class="card">
+        <img class="card-img-top" 
+          src="<%= CmsWeb.Uploaders.Cover.url({post.cover, post}, :thumb) %>" 
+          alt="Card image">
+        <div class="card-body">
+          <strong class="card-title"><%= post.title %></strong>
+          <br><br><p><%= post_excerpt(post) %></p>
+        </div>
+        <div class="card-footer">
+          <small>
+            <%= format_date(post) %> by 
+            <strong><%= post.user.name %></strong>
+          </small>
+        </div>
+      </div>
+    </a>
+    <% end %>
+
+  </div>
+</div>

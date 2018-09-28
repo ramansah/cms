@@ -1,0 +1,31 @@
+<%= button("New Post", method: "get", to: admin_post_path(@conn, :new), class: "btn btn-sm btn-info") %>
+
+<table class="table table-bordered">
+<thead>
+  <th>Post Title</th>
+  <th>Author</th>
+  <th>Created</th>
+  <th>Published</th>
+  <th>Actions</th>
+</thead>
+  <tbody>
+    <%= for post <- @posts do %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.user.name %></td>
+      <td><%= format_date(post) %></td>
+      <td><%= published_status(post) %></td>
+      <td>
+        <%= link("View", to: page_path(@conn, :show, post), class: "btn btn-sm btn-secondary") %>
+        <%= link("Modify", to: admin_post_path(@conn, :edit, post), class: "btn btn-sm btn-info") %>
+        <%= if post.published do %>
+          <%= link("Unpublish", to: admin_post_publish_path(@conn, :publish, post.slug), data: [confirm: "Are you sure?"], class: "btn btn-sm btn-warning") %>
+        <% else %>
+          <%= link("Publish", to: admin_post_publish_path(@conn, :publish, post.slug), class: "btn btn-sm btn-success") %>
+          <%= link("Delete", method: :delete, to: admin_post_path(@conn, :delete, post), data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger") %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

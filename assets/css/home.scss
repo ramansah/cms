@@ -1,0 +1,30 @@
+
+.card-columns {
+  column-count: 4;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.card {
+  font-size: 14px;
+}
+
+main, table, ul {
+  margin-top: 20px;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}

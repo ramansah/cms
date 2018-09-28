@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Extensible CMS built with Elixir inspired from Wordpress">
+    <meta name="author" content="Raman Sah">
+
+    <title>Elixir CMS</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= render "navbar.html", conn: @conn %>
+    <div class="container-fluid">
+    
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <main role="main">
+        <%= if Map.has_key?(@conn.assigns, :sidebar) do %>
+          <%= render "sidebar.html", conn: @conn %>
+          <div class="main">
+            <%= render @view_module, @view_template, assigns %>
+          </div>
+        <% else %>
+        <%= render @view_module, @view_template, assigns %>
+        <% end %>
+      </main>
+
+    </div>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
